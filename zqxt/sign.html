@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zn-CN">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>自强学堂分享会签到系统</title>
+	<link rel="stylesheet" href="src/qiandao.css">
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script src="src/core.js"></script>
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header">自强学堂<span>分享会签到系统</span></div>
+	<!-- 内容 -->
+	<div class="con">
+		<div class="cx_input"><input id="cx_input" type="text" placeholder="请输入手机号码查询签到"></div>
+		<div class="but" id="but">签到</div>
+		<div id="showdata"></div>
+	</div>
+	<!-- 底部 -->
+	<div class="footer">吹雨听风 出品</div>
+	<script>
+		$(function(){
+			$("#but").click(function(event) {
+				$tel = $("#cx_input").val();
+				// 获取json数据
+				if($.isNumeric($tel) && $tel.length == 11){
+					$.getJSON('/index.php?s=/article/info/id/14.html',{ "mobile" : $tel }, function(data) {
+						var $qiandao = data.is_sign, //签到状态
+							$baoming = data.is_active,  //报名状态
+							$user_gs = data.company,  //公司名字
+							$user_zw = data.post, //公司职务
+							$pay     = data.is_pay,
+							$user_name = data.name; //名字
+						// 如果没有报名
+						if ($baoming == false) {
+							$("#showdata").text("抱歉，您还没有报名无法签到。");
+						// 如果已经报名
+						} else if($pay == false){
+							$("#showdata").html('抱歉，您还没有支付报名费，<a href="/index.php?s=/article/search/id/8/mobile/'+ data.mobile +'.html">现在支付</a>。');
+						}else{
+							$("#showdata").html("<h1>您已成功签到</h1><ul>"+
+								"<li>公司：<span>"+$user_gs+"</span></li>"+
+								"<li>职务：<span>"+$user_zw+"</span></li>"+
+								"<li>名字：<span>"+$user_name+"</span></li>"+
+								"</ul>");
+						};
+					});
+				} else {
+					$("#showdata").text("抱歉，请输入正确的电话号码。");
+				}
+					
+			});
+		});
+	</script>
+</body>
+</html>

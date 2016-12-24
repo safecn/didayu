@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$info.title}</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<style type="text/css">
+body {
+ margin: 0;
+ padding: 0;
+ font-size:100%;
+}
+img{ max-width: 100%; }
+a {text-decoration:none; color:#FFF;}
+#content {
+ font: 1.5em arial, verdana, sans-serif;
+ margin-left:auto; margin-right:auto;
+ text-align:center;
+ overflow:hidden;
+}
+.wrapper {width:100%; position:absolute; left:50%; margin-left:-50%; top:30px; text-align:center;  overflow:hidden;}
+.title_01 {display:block;font-size:28pt; color:#FFF;letter-spacing:1pt;}
+.title_02 {display:block;font-size:13pt; color:#FFF; margin-top:4px;  }
+.img_01 {clear:both; margin-top:4px;}
+.about {height:40px; margin-left:auto; margin-right:auto; background-color:#d23b2f; width:184px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-top:30px; text-align:center; color:#FFF; line-height:40px; font-size:13pt;}
+
+.date {height:40px; margin-left:auto; margin-right:auto; background-color:#0e97e8; width:184px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-top:15px; text-align:center; color:#FFF; line-height:40px; font-size:13pt;}
+
+.user {height:40px; margin-left:auto; margin-right:auto; background-color:#0e97e8; width:184px;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px; margin-top:15px; text-align:center; color:#FFF; line-height:40px; font-size:13pt;}
+.name {width:100%; height:40px;  background-color:#d23b2f; color:#FFF; text-align:center; line-height:40px; font-size:15pt; z-index:999; margin-top:10px;}
+.serach {width:210px; height:30px; font-size:10pt; text-decoration:underline; text-align:center; line-height:30px; color:#000; margin-top:15px; margin-left:auto; margin-right:auto;}
+.bao {width:210px; height:40px; font-size:11pt; text-align:center; line-height:40px; color:#FFF; margin-top:15px; background-color:#d23b2f;margin-left:auto; margin-right:auto; border: 0 none}
+input {width:200px; height:30px; border:none; background-color:#FFF; text-align:center; font-size:8.6pt; color:#666; margin-left:auto; margin-right:auto; clear:both; margin-top:4px;-webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<span class="title_01">自强学堂</span>
+<img src="__IMG__/line.png" height="1" class="img_01"/>
+<span class="title_02">{$info.title}</span>
+<empty name="active">
+<div class="serach">您还没有报名！</div>
+<else/>
+<eq name="active.is_pay" value="1">
+<div class="serach">您已报名且已支付报名费！</div>
+<div><p style="text-align:center;text-autospace:none"><span style="font-family: 宋体; color: rgb(255, 0, 0);">请扫描下方二维码加入分享会讨论群。<br>PS:长按下方二维码可以保存到手机</span></p></div>
+<img src="__IMG__/{$info.id}.png"/>
+<div> <p style="text-align: center;"><span style="font-size:16px;font-family:宋体;color:#2F2F2F">遇到无法报名的问题</span></p><p style="text-align: center;"><span style="font-size:16px;font-family:宋体;color:#2F2F2F">请加微信：</span><span style="font-size: 16px; font-family: Times; color: rgb(0, 176, 80);">217389</span></p><p style="text-align: center;"><font color="#2f2f2f" face="宋体">提交反馈信息</font></p></div>
+<else/>
+<div class="serach">您已报名但未支付报名费！</div>
+<form action="__ROOT__/Alipay/alipayapi.php" method="POST">
+    <input type="hidden" value="{$active.id}" name="WIDout_trade_no" />
+    <input type="hidden" value="自强学堂 - {$info.title} - 报名费" name="WIDsubject" />
+    <input type="hidden" value="{$active.money}" name="WIDtotal_fee" />
+    <input type="hidden" value="http://zqxt.mrjn.net/notify/{$info.id}.html" name="WIDnotify_url" />
+    <input type="hidden" value="http://zqxt.mrjn.net/callback/{$info.id}.html" name="WIDcall_back_url" />
+    <input type="hidden" value="http://zqxt.mrjn.net/{$info.id}.html" name="WIDmerchant_url" />
+    <button type="submit" class="bao">立即支付</button>
+</form>
+</eq>
+</empty>
+</div>
+<div id="content">
+<img src="__IMG__/bg.jpg"/>
+</div>
+<script type="text/javascript">
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+</body>
+</html>

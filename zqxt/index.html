@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zn-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>自强学堂分享会签到系统</title>
+	<link rel="stylesheet" href="src/core.css">
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script src="src/core.js"></script>
+</head>
+<body>
+	<!-- 头部 -->
+	<div class="header"><div class="wrap">
+		自强学堂<span>分享会签到系统</span>
+	</div></div>
+	<!-- 内容 -->
+	<div class="wrap content">
+		<!-- 签到记录 -->
+		<dl class="part fl">
+			<dt>最近签到人员</dt>
+			<dd>
+				<ul class="user-info">
+					<li>单位：<span id="user-gs">--</span></li>
+					<li>职务：<span id="user_zw">--</span></li>
+					<li>姓名：<span id="user_name">--</span></li>
+				</ul>
+			</dd>
+		</dl>
+		<!-- 会议倒计时 -->
+		<dl class="part fr">
+			<dt>会议倒计时</dt>
+			<dd id="totime"></dd>
+			<dd class="renshu">签到人数：<span id="allqiandao">--</span>人</dd>
+		</dl>
+	</div>
+	<!-- 底部 -->
+	<div class="footer">吹雨听风 出品</div>
+</body>
+</html>

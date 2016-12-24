@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$info.title}</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<style type="text/css">
+body, html {
+ margin: 0;
+ padding: 0;
+ font-size:100%;
+ background:url(__IMG__/bg.png) center top no-repeat;
+}
+img{ max-width: 100%; }
+a {text-decoration:none; color:#000;}
+#content {
+ font: 1.5em arial, verdana, sans-serif;
+ margin-left:auto; margin-right:auto;
+ text-align:center;
+ overflow:hidden;
+ height:100%;
+ min-height:100%;
+}
+.wrapper {width:100%; position:absolute; left:50%; margin-left:-50%; top:10px; text-align:center;  overflow:hidden;}
+.title_01 {display:block;font-size:28pt; color:#FFF;letter-spacing:1pt;}
+.title_02 {display:block;font-size:13pt; color:#FFF; margin-top:4px;  }
+.title_03 {font-size:9pt;}
+.title_04 {font-size:13pt;}
+.img_01 {clear:both; margin-top:4px;}
+.menu {width:100%; height:40px; margin-top:10px;}
+p {margin:0px; padding:0px; padding-left:15px; padding-right:15px;padding-bottom:50px; padding-top:15px; font-size:9pt; text-align:justify; line-height:20px;}
+
+.about {width:33%; height:40px; float:left;background-color:#0e97e8;line-height:40px; text-align:center; color:#FFF;}
+.date {width:34%; height:40px; float:left; background-color:#d23b2f;line-height:40px; text-align:center; color:#FFF;}
+.user {width:33%; height:40px; float:left; background-color:#0e97e8;line-height:40px; text-align:center; color:#FFF;}
+.name {width:100%; height:40px;  background-color:#d23b2f; color:#FFF; text-align:center; line-height:40px; font-size:15pt; z-index:999; margin-top:10px;}
+.solgn {width:100%; padding-top:8px; padding-bottom:8px; text-align:center;background-color:#d23b2f; color:#FFF;}
+.main_inner {width:100%; }
+
+.style_01 {padding-left:4px;padding-right:4px;font-size:12pt; padding-top:4px; padding-bottom:4px;}
+.style_02 {padding-left:4px;padding-right:4px;font-size:12pt; padding-top:4px; padding-bottom:4px;}
+
+.line_b {border-bottom:1px #e5e5e5 solid;}
+.line_bl {border-left:1px #e5e5e5 solid;}
+input {width:200px; height:30px; border:none; background-color:#FFF; text-align:center; font-size:11pt; color:#666; margin-left:auto; margin-right:auto; clear:both; margin-top:15px;-webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;}
+    .bao {width:210px; height:40px; font-size:11pt; text-align:center; line-height:40px; color:#FFF; margin-top:15px; background-color:#d23b2f;margin-left:auto; margin-right:auto; border: 0 none}
+    .serach {width:210px; height:30px; font-size:14pt; text-decoration:underline; text-align:center; line-height:30px; color:#000; margin-top:15px; margin-left:auto; margin-right:auto;}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+<span class="title_01">自强学堂</span>
+<img src="__IMG__/line.png" height="1" class="img_01"/>
+<span class="title_02">{$info.title}</span>
+
+<div class="main_inner">
+<form action="__SELF__" method="post">
+    <input type="hidden" name="active_id" value="{$info.id}" />
+    <input id="" class="in_put" value="" autocomplete="off" name="name" placeholder="姓名">
+    <input id="" class="in_put" value="" autocomplete="off" name="mobile" placeholder="手机号码">
+    <input id="" class="in_put" value="" autocomplete="off" name="company" placeholder="所属公司">
+    <input id="" class="in_put" value="" autocomplete="off" name="post" placeholder="职务">
+    <input id="" class="in_put" value="" autocomplete="off" name="nick" placeholder="昵称">
+    <input id="" class="in_put" value="" autocomplete="off" name="wechat" placeholder="微信号">
+<php>if($info['deadline'] > NOW_TIME){</php>
+    <button type="submit" class="bao">确认报名</button>
+<php>} else {</php>
+<div>确认报名</div>
+<php>}</php>
+    <div class="serach"><a href="http://zqxt.mrjn.net/{$info.id}.html?type=search">查询报名结果</a></div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+</body>
+</html>
